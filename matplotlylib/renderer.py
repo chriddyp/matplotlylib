@@ -220,13 +220,13 @@ class PlotlyRenderer(Renderer):
 
         """
         if offset_coordinates is 'data':
-            print '\n', 'num paths: ', len(paths[0][0])
-            print paths[0][0]
-            print '\n', 'num pathcodes', len(paths[0][1])
-            print paths[0][1]
-            print '\n\n', 'path coordinates: ', path_coordinates
-            print 'path transforms:\n', path_transforms
-            print '\n\n', styles
+            # print '\n', 'num paths: ', len(paths[0][0])
+            # print paths[0][0]
+            # print '\n', 'num pathcodes', len(paths[0][1])
+            # print paths[0][1]
+            # print '\n\n', 'path coordinates: ', path_coordinates
+            # print 'path transforms:\n', path_transforms
+            # print '\n\n', styles
             alpha_face = styles['facecolor'][0][3]
             rgb_face = [int(c*255) for c in styles['facecolor'][0][:3]]
             alpha_edge = styles['edgecolor'][0][3]
