@@ -211,6 +211,44 @@ class PlotlyRenderer(Renderer):
         else:
             pass
 
+    def draw_path_collection(self, paths, path_coordinates, path_transforms,
+                             offsets, offset_coordinates, offset_order,
+                             styles, mplobj=None):
+        """Add a path collection to data list as a scatter plot.
+
+        Current implementation defaults such collections as scatter plots.
+
+        """
+        if offset_coordinates is 'data':
+            print '\n', 'num paths: ', len(paths[0][0])
+            print paths[0][0]
+            print '\n', 'num pathcodes', len(paths[0][1])
+            print paths[0][1]
+            print '\n\n', 'path coordinates: ', path_coordinates
+            print 'path transforms:\n', path_transforms
+            print '\n\n', styles
+            alpha_face = styles['facecolor'][0][3]
+            rgb_face = [int(c*255) for c in styles['facecolor'][0][:3]]
+            alpha_edge = styles['edgecolor'][0][3]
+            rgb_edge = [int(c*255) for c in styles['edgecolor'][0][:3]]
+            data = offsets
+            style = {
+                'alpha': alpha_face,
+                'facecolor': 'rgb({},{},{})'.format(*rgb_face),
+                'marker': None,  # this will probably default to 'dot'
+                'edgecolor': 'rgb({},{},{})'.format(*rgb_edge),
+                'edgewidth': styles['linewidth'][0]
+            }
+            props = {
+                'coordinates': 'data',
+                'data': data,
+                'style': style,
+            }
+            self.draw_markers(**props)
+        else:
+            warnings.warn('path collection is not linked to data, implemented '
+                          'of such path collections is not yet supported.')
+
     def draw_path(self, **props):
         """Draw path.
 
